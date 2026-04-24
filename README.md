@@ -15,6 +15,14 @@
 
 ---
 
+## 🎥 Watch the demo first
+
+[![Klypup demo video](https://img.youtube.com/vi/7bVMFYfFz_A/maxresdefault.jpg)](https://youtu.be/7bVMFYfFz_A)
+
+**→ [youtu.be/7bVMFYfFz_A](https://youtu.be/7bVMFYfFz_A)** — a full walk-through of the dashboard, a live research query, streaming sections, the chat follow-up, and the comparison mode. Start here; the rest of this README is the technical backdrop.
+
+---
+
 Type a question like *"Analyze NVIDIA Q3 earnings vs AMD and the main competitive risks"* and Klypup orchestrates six data tools in parallel — market data, news sentiment, SEC filings RAG, social signals, web-grounded search, optional scraping — then streams a structured, cited research report to the browser in 20-45 seconds. Follow up in a chat panel that's grounded in the report.
 
 ---
