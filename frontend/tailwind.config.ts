@@ -6,22 +6,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'bg-primary': '#0A0E1A',
-        'bg-secondary': '#111827',
-        'bg-tertiary': '#1C2333',
-        'bg-elevated': '#1E2A3E',
-        'border-subtle': '#2A3550',
-        'border-default': '#3B4D6B',
-        'border-strong': '#4B6090',
+        // Theme-aware tokens driven by CSS variables in src/index.css.
+        // Flipping [data-theme="light"|"dark"] on <html> re-colors everything.
+        'bg-primary': 'var(--bg-primary)',
+        'bg-secondary': 'var(--bg-secondary)',
+        'bg-tertiary': 'var(--bg-tertiary)',
+        'bg-elevated': 'var(--bg-elevated)',
+        'border-subtle': 'var(--border-subtle)',
+        'border-default': 'var(--border-default)',
+        'border-strong': 'var(--border-strong)',
+        // Brand + semantic colors stay constant across themes.
         'brand-blue': '#3B82F6',
         'brand-glow': '#60A5FA',
         'brand-cyan': '#06B6D4',
         gain: '#10B981',
-        'gain-subtle': '#064E3B',
+        'gain-subtle': 'rgba(16, 185, 129, 0.18)',
         loss: '#EF4444',
-        'loss-subtle': '#450A0A',
+        'loss-subtle': 'rgba(239, 68, 68, 0.18)',
         neutral: '#F59E0B',
-        'neutral-subtle': '#451A03',
+        'neutral-subtle': 'rgba(245, 158, 11, 0.18)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

@@ -4,23 +4,63 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Theme tokens ─────────────────────────────────────────────────────────
+   The app's Tailwind palette references these CSS variables, so flipping
+   [data-theme] on <html> re-colors everything with zero component changes. */
+
+:root,
+[data-theme='dark'] {
+  --bg-primary: #0A0E1A;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1C2333;
+  --bg-elevated: #1E2A3E;
+  --border-subtle: #2A3550;
+  --border-default: #3B4D6B;
+  --border-strong: #4B6090;
+  --text-primary: #E2E8F0;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --scrollbar-track: #111827;
+  --scrollbar-thumb: #3B4D6B;
+  --shimmer-tint: rgba(255, 255, 255, 0.09);
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F1F5F9;
+  --bg-elevated: #E2E8F0;
+  --border-subtle: #E2E8F0;
+  --border-default: #CBD5E1;
+  --border-strong: #94A3B8;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --scrollbar-track: #F1F5F9;
+  --scrollbar-thumb: #CBD5E1;
+  --shimmer-tint: rgba(15, 23, 42, 0.08);
+  color-scheme: light;
+}
+
 html {
-  background-color: #0A0E1A;
+  background-color: var(--bg-primary);
 }
 
 body {
-  background-color: #0A0E1A;
-  color: #E2E8F0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   font-family: 'Inter', system-ui, sans-serif;
   margin: 0;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #3B4D6B #111827;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 *::-webkit-scrollbar {
@@ -29,12 +69,31 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: #111827;
+  background: var(--scrollbar-track);
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #3B4D6B;
+  background-color: var(--scrollbar-thumb);
   border-radius: 4px;
+}
+
+/* In light mode, slate-100/200/300 text becomes unreadable on white cards.
+   Remap those utility classes to theme-aware foreground colors. */
+[data-theme='light'] .text-slate-100,
+[data-theme='light'] .text-slate-200 {
+  color: var(--text-primary);
+}
+[data-theme='light'] .text-slate-300,
+[data-theme='light'] .text-slate-400 {
+  color: var(--text-secondary);
+}
+[data-theme='light'] .text-slate-500,
+[data-theme='light'] .text-slate-600 {
+  color: var(--text-muted);
+}
+[data-theme='light'] .bg-bg-primary\/80,
+[data-theme='light'] .bg-bg-primary\/90 {
+  background-color: rgba(248, 250, 252, 0.85);
 }
 
 .klypup-shimmer {
@@ -49,9 +108,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.04) 45%,
-    rgba(255, 255, 255, 0.09) 50%,
-    rgba(255, 255, 255, 0.04) 55%,
+    var(--shimmer-tint) 50%,
     transparent 100%
   );
   animation: klypup-shimmer 1.5s linear infinite;
@@ -67,7 +124,7 @@ body {
 
 .klypup-gradient-border {
   position: relative;
-  background-color: #111827;
+  background-color: var(--bg-secondary);
 }
 .klypup-gradient-border::before {
   content: '';

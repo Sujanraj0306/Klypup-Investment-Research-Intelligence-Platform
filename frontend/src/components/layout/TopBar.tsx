@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Mic, Bell } from 'lucide-react';
+import { Mic, Bell, Sun, Moon } from 'lucide-react';
 import { useAuthContext } from '../../hooks/AuthContext';
+import { useTheme } from '../../hooks/useTheme';
 
 const routeTitles: Record<string, string> = {
   '/': 'Dashboard',
@@ -30,6 +31,7 @@ export function TopBar() {
   const { user } = useAuthContext();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { theme, toggle: toggleTheme } = useTheme();
   const title = titleForPath(pathname);
 
   return (
@@ -37,6 +39,14 @@ export function TopBar() {
       <h2 className="text-base font-semibold text-slate-100">{title}</h2>
 
       <div className="ml-auto flex items-center gap-2">
+        <button
+          onClick={toggleTheme}
+          aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+          title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+          className="rounded-md p-2 text-slate-400 transition-colors hover:bg-bg-tertiary hover:text-brand-glow"
+        >
+          {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
         <button
           onClick={() => navigate('/research?voice=1')}
           aria-label="Voice research"
