@@ -1,0 +1,64 @@
+# ── Dependencies ──────────────────────────────────────────────────────────
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ── Build output ──────────────────────────────────────────────────────────
+dist/
+build/
+*.egg-info/
+.next/
+out/
+
+# ── Local env files (NEVER commit) ────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+backend/.env
+frontend/.env.local
+
+# ── Firebase / GCP secrets ────────────────────────────────────────────────
+firebase-admin.json
+backend/firebase-admin.json
+service-account*.json
+*-adminsdk-*.json
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
+# ── ChromaDB local vector store ───────────────────────────────────────────
+chroma_db/
+backend/chroma_db/
+*.sqlite3
+
+# ── Logs ──────────────────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── OS / editor ───────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Python tooling caches ─────────────────────────────────────────────────
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ── Local tool caches ─────────────────────────────────────────────────────
+/tmp/
+.cache/

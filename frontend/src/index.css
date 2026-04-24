@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background-color: #0A0E1A;
+}
+
+body {
+  background-color: #0A0E1A;
+  color: #E2E8F0;
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3B4D6B #111827;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #3B4D6B;
+  border-radius: 4px;
+}
+
+.klypup-shimmer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.klypup-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 45%,
+    rgba(255, 255, 255, 0.09) 50%,
+    rgba(255, 255, 255, 0.04) 55%,
+    transparent 100%
+  );
+  animation: klypup-shimmer 1.5s linear infinite;
+}
+@keyframes klypup-shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.klypup-gradient-border {
+  position: relative;
+  background-color: #111827;
+}
+.klypup-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from 0deg,
+    #3B82F6,
+    #06B6D4,
+    #60A5FA,
+    #3B82F6
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: klypup-spin 3s linear infinite;
+  pointer-events: none;
+}
+@keyframes klypup-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

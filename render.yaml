@@ -1,0 +1,57 @@
+# Render Blueprint — one-click deploy for the Klypup backend on the free tier.
+# Push this file to the repo root and use "New → Blueprint" in Render to import.
+#
+# Why free tier works for this app:
+#   - FastAPI fits in 512 MB RAM when Playwright is omitted.
+#   - ChromaDB persistence is optional (RAG degrades gracefully if empty).
+#   - Cold starts are ~30-60s after 15 min idle — acceptable for a demo.
+#
+# Secrets: add the real values in Render dashboard → Environment after the
+# first deploy. The blueprint lists them with `sync: false` so Render prompts
+# for them instead of committing them to the repo.
+
+services:
+  - type: web
+    name: klypup-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: REDDIT_USER_AGENT
+        value: klypup-research/1.0 (by /u/klypup_bot)
+      # -------- Secrets (set in Render dashboard) --------
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_CREDENTIALS_JSON
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: FMP_API_KEY
+        sync: false
+      - key: ALPHA_VANTAGE_KEY
+        sync: false
+      - key: NEWS_API_KEY
+        sync: false
+      - key: GNEWS_API_KEY
+        sync: false
+      - key: SEC_USER_AGENT
+        sync: false
+      - key: CORS_ORIGINS
+        value: '["https://klypup.web.app","https://klypup.firebaseapp.com"]'
+      # Optional (leave empty to disable the feature)
+      - key: REDDIT_CLIENT_ID
+        sync: false
+      - key: REDDIT_CLIENT_SECRET
+        sync: false
